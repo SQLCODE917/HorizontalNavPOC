@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="jquery@2.0.3" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js" data-semver="1.4.3" data-require="angular.js@1.4.3"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular-animate.js" data-semver="1.4.3" data-require="angular-animate@1.4.3"></script>
+    <link data-require="font-awesome@4.3.0" data-semver="4.3.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="navigationController.js"></script>
+    <script src="navBuildingService.js"></script>
+    <script src="navContainerDirective.js"></script>
+    <script src="menuItemDirective.js"></script>
+  </head>
+
+  <body ng-app="dropdownNav">
+    <div id="global-nav-pane" ng-controller="navigationController as vm">
+      <div id="navigation-backdrop" ng-click="vm.clickNavigationBackdrop()" ng-class="{expanded: vm.expandNav}"></div>
+      <span id="user-display-label">
+        <!--Menu Toggles must have IDs for uniqueness and styling the nav container -->
+        <div id="navigation-toggles">
+          <span class="navigation-toggle" id="name-menu-toggle" ng-click="vm.toggleNameNavigation($event)">
+            <span class="fa fa-user"></span>
+
+            Name
+            <span ng-class="vm.nameNavToggleClass()"></span>
+          </span>
+          <span class="navigation-toggle" id="home-menu-toggle" ng-click="vm.toggleHomeNavigation($event)">
+            Home
+            <span ng-class="vm.homeNavToggleClass()"></span>
+          </span>
+        </div>
+      </span>
+      <div id="global-nav-container" nav-container="" contents="vm.menuContents" ng-class="vm.navContainerClass()"></div>
+    </div>
+    <div id="main-content"></div>
+  </body>
+
+</html>
